@@ -24,6 +24,7 @@ Como cada empresa pode ter múltiplos arquivos, o processo manual se torna moros
 
 - **Autenticação**: Controle de acesso via Spring Security, com suporte a HTTP Basic Auth.
 - **CRUD de Empresas**: Criar, editar, visualizar e remover empresas.
+- **CRUD de Grupos Empresariais**: Criar, editar, visualizar e remover grupos empresariais.
 - **Gestão de Dados de Empresas**: Atribuir relatórios de marketplaces (Shopee, etc.) às empresas.
 - **Dashboard/Endpoints de Consulta**: Obter dados consolidados de cada empresa, incluindo valor total da operação e taxas.
 
@@ -39,7 +40,16 @@ Como cada empresa pode ter múltiplos arquivos, o processo manual se torna moros
 
 ---
 
+### Fases de Desenvolvimento
+- ⌛ **CRUD de Usuários**: Implementando, permite criar, editar, visualizar e remover usuários internos da plataforma.
+- 🔲 **CRUD de Grupos Empresariais**: Próximo passo, será responsável por gerenciar Grupos Empresariais cadastrados.
+- 🔲 **CRUD de Empresas**: Próximo passo, será responsável por gerenciar empresas cadastradas.
+- 🔲 **CRUD de Relatórios / Dados de Marketplace**: Após as empresas, será possível vincular relatórios e dados específicos de marketplaces.
+- 🔲 **Lógica de Excel / Consolidação de Relatórios**: Última etapa, onde a API automatiza a soma de valores e taxas, gerando os relatórios consolidados.
 
+
+
+---
 ## Estrutura de Endpoints (Exemplo)
 
 | Endpoint | Método | Descrição |
@@ -49,17 +59,8 @@ Como cada empresa pode ter múltiplos arquivos, o processo manual se torna moros
 | `/api/companies/{id}` | PUT | Atualiza dados da empresa |
 | `/api/companies/{id}` | DELETE | Remove empresa |
 | `/api/reports/{companyId}` | GET | Retorna relatório consolidado da empresa |
-dsdsdsdsdsd> Obs.: Todos os endpoints estão protegidos via autenticação HTTP Basic.
+> Obs.: Todos os endpoints estão protegidos via autenticação HTTP Basic.
 
----
-
-### Fases de Desenvolvimento
-[⌛ CRUD de Usuários] --> [🔲 CRUD de Empresas] --> [🔲 CRUD de Relatórios / Dados de Marketplace] --> [🔲 Lógica de Excel / Consolidação de Relatórios]
-- ⌛ **CRUD de Usuários**: Implementando, permite criar, editar, visualizar e remover usuários internos da plataforma.
-- 🔲 **CRUD de Grupos Empresariais**: Próximo passo, será responsável por gerenciar Grupos Empresariais cadastrados.
-- 🔲 **CRUD de Empresas**: Próximo passo, será responsável por gerenciar empresas cadastradas.
-- 🔲 **CRUD de Relatórios / Dados de Marketplace**: Após as empresas, será possível vincular relatórios e dados específicos de marketplaces.
-- 🔲 **Lógica de Excel / Consolidação de Relatórios**: Última etapa, onde a API automatiza a soma de valores e taxas, gerando os relatórios consolidados.
 
 ---
 
