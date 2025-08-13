@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset matheus: 2025-08-08
+--changeset matheus:2025-08-08
 --comment: enterprise table create
 
 CREATE TABLE ENTERPRISES(
@@ -11,7 +11,7 @@ CREATE TABLE ENTERPRISES(
     CONSTRAINT enterprises_groups__enterprises_fk
     FOREIGN KEY (enterprise_group_id)
     REFERENCES ENTERPRISES_GROUPS(id)
-    ON DELETE CASCADE,
+    ON DELETE CASCADE
 );
 
 --rollback DROP TABLE ENTERPRISES
