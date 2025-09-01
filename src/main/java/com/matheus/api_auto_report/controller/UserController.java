@@ -1,5 +1,6 @@
 package com.matheus.api_auto_report.controller;
 
+import com.matheus.api_auto_report.dto.UserDTO;
 import com.matheus.api_auto_report.persistence.entity.UserEntity;
 import com.matheus.api_auto_report.service.UserService;
 import jakarta.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -24,7 +26,10 @@ public class UserController {
         return service.insert(user);
     }
 
-
+    @GetMapping
+    public Optional<UserDTO> getUser(@RequestParam int id) throws Exception {
+        return service.findById(id);
+    }
 
 }
 
