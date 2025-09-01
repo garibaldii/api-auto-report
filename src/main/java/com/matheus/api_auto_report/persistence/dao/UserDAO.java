@@ -1,11 +1,14 @@
 package com.matheus.api_auto_report.persistence.dao;
 
+import com.matheus.api_auto_report.dto.UserDTO;
 import com.matheus.api_auto_report.persistence.entity.UserEntity;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.Optional;
 
 import com.mysql.cj.jdbc.StatementImpl;
+import org.apache.catalina.User;
 
 public class UserDAO {
 
@@ -32,6 +35,23 @@ public class UserDAO {
         }
 
         return entity;
+    }
+
+    public Optional<UserDTO> find(final int id) throws SQLException {
+        var sql = "SELECT id, email FROM USERS WHERE id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                UserDTO user = new UserDTO(resultSet.getLong("id"), resultSet.getString("email"));
+
+                return Optional.of(user);
+            }
+
+            return Optional.empty();
+        }
     }
 
 }
