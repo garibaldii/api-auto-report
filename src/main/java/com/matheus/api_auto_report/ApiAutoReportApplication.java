@@ -1,6 +1,6 @@
 package com.matheus.api_auto_report;
 
-import com.matheus.api_auto_report.persistence.migration.MigrationStrategy;
+import com.matheus.api_auto_report.infraestructure.persistence.migration.MigrationStrategy;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
