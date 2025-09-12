@@ -1,4 +1,4 @@
-package com.matheus.api_auto_report.persistence.migration;
+package com.matheus.api_auto_report.infraestructure.persistence.migration;
 
 import liquibase.Liquibase;
 import liquibase.database.jvm.JdbcConnection;

@@ -1,4 +1,4 @@
-package com.matheus.api_auto_report.persistence.config;
+package com.matheus.api_auto_report.infraestructure.persistence.db;
 
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
