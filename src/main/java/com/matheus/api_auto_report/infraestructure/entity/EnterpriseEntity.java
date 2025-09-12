@@ -1,18 +1,23 @@
-package com.matheus.api_auto_report.persistence.entity;
+package com.matheus.api_auto_report.infraestructure.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.UniqueElements;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import java.util.List;
 
-@Data
 @Entity
+@Table(name = "enterprises")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class EnterpriseEntity {
 
     @Id
