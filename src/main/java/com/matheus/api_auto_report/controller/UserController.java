@@ -1,17 +1,12 @@
 package com.matheus.api_auto_report.controller;
 
-import com.matheus.api_auto_report.dto.UserDTO;
-import com.matheus.api_auto_report.persistence.entity.UserEntity;
-import com.matheus.api_auto_report.service.UserService;
+import com.matheus.api_auto_report.infraestructure.entity.UserEntity;
+import com.matheus.api_auto_report.business.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -30,6 +25,18 @@ public class UserController {
     public Optional<UserDTO> getUser(@RequestParam int id) throws Exception {
         return service.findById(id);
     }
+
+    @GetMapping
+    public List<UserDTO> getUsers() throws Exception {
+        return service.getUsers();
+    }
+
+    @DeleteMapping
+    public boolean deleteUser(@RequestParam  long id) throws Exception {
+        return service.deleteById(id);
+    }
+
+
 
 }
 
