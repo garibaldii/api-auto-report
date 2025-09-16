@@ -8,16 +8,16 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Table(name = "ENTERPRISE_GROUP")
+@Table(name = "bussiness_groups")
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class EnterpriseGroupEntity {
+public class BussinessGroupEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;

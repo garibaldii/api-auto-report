@@ -8,9 +8,9 @@ CREATE TABLE enterprises(
     cnpj char(14) UNIQUE NOT NULL,
     cellphone_number VARCHAR(20) UNIQUE NOT NULL,
     enterprise_group_id BIGINT NOT NULL,
-    CONSTRAINT enterprises_groups__enterprises_fk
+    CONSTRAINT bussiness_groups__enterprises_fk
     FOREIGN KEY (enterprise_group_id)
-    REFERENCES enterprises_groups(id)
+    REFERENCES bussiness_groups(id)
     ON DELETE CASCADE
 );
 

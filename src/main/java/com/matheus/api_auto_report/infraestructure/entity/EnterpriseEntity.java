@@ -39,7 +39,7 @@ public class EnterpriseEntity {
 
     @ManyToOne
     @JoinColumn(name = "enterprise_group_id")
-    private EnterpriseGroupEntity group;
+    private BussinessGroupEntity group;
 
     @OneToMany(mappedBy = "enterprise")
     private List<SheetEntity> sheets;
