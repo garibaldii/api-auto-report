@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,6 +33,7 @@ public class UserEntity {
 
     @NotBlank(message = "Field can not be blank")
     @Size(max = 244, message = "Password can not be longer than 244 characters")
+    @Column(name = "hashed_password")
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
