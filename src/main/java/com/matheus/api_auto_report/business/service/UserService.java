@@ -1,7 +1,6 @@
 package com.matheus.api_auto_report.business.service;
 
 import com.matheus.api_auto_report.business.validator.UserValidator;
-import com.matheus.api_auto_report.exception.exs.NotFound;
 import com.matheus.api_auto_report.infraestructure.dto.UserRequestDTO;
 import com.matheus.api_auto_report.infraestructure.dto.UserResponseDTO;
 import com.matheus.api_auto_report.infraestructure.repositories.UserRepository;
@@ -65,16 +64,15 @@ public class UserService {
     }
 
 
-    public void updateUserByEmail(String email, UserRequestDTO requestDTO) {
+    public UserResponseDTO updateUserByEmail(String email, UserRequestDTO requestDTO) {
 
         validator.verifyUserExistsByEmail(email);
 
         UserEntity user = repository.findByEmail(email).orElseThrow();
 
 
-        if(requestDTO.name() != null) {
-            user.setName(requestDTO.name());
-        }
+        if(requestDTO.name() != null) user.setName(requestDTO.name());
+
 
         if (requestDTO.password() != null) {
             String hashedPassword = encoder.encode(requestDTO.password());
@@ -84,6 +82,7 @@ public class UserService {
 
         repository.save(user);
 
+        return new UserResponseDTO(user.getId(), user.getName(), user.getEmail());
     }
 
     @Transactional
