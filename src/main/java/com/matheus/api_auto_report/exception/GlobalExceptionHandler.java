@@ -1,7 +1,7 @@
 package com.matheus.api_auto_report.exception;
 
 
-import com.matheus.api_auto_report.exception.exs.DuplicateData;
+import com.matheus.api_auto_report.exception.exs.DuplicatedData;
 import com.matheus.api_auto_report.exception.exs.NotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -43,8 +43,8 @@ public class GlobalExceptionHandler {
 
 
     @ResponseStatus(HttpStatus.CONFLICT) // 409
-    @ExceptionHandler(DuplicateData.class)
-    public ErrorResponse handleEmailExists(DuplicateData ex) {
+    @ExceptionHandler(DuplicatedData.class)
+    public ErrorResponse handleEmailExists(DuplicatedData ex) {
         return new ErrorResponse(409, ex.getMessage(), null);
     }
 
