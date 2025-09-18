@@ -1,6 +1,5 @@
 package com.matheus.api_auto_report.infraestructure.repositories;
 
-import com.matheus.api_auto_report.infraestructure.dto.UserResponseDTO;
 import com.matheus.api_auto_report.infraestructure.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
