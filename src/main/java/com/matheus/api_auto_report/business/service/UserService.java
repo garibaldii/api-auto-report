@@ -1,6 +1,9 @@
 package com.matheus.api_auto_report.business.service;
 
 import com.matheus.api_auto_report.business.validator.UserValidator;
+import com.matheus.api_auto_report.config.security.JwtTokenService;
+import com.matheus.api_auto_report.config.security.UserDetailsImpl;
+import com.matheus.api_auto_report.infraestructure.dto.UserLoginDTO;
 import com.matheus.api_auto_report.infraestructure.dto.UserRequestDTO;
 import com.matheus.api_auto_report.infraestructure.dto.UserResponseDTO;
 import com.matheus.api_auto_report.infraestructure.repositories.UserRepository;
@@ -9,8 +12,11 @@ import com.matheus.api_auto_report.infraestructure.entity.UserEntity;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.authentication.AuthenticationManager;
 
 
 import java.util.ArrayList;
@@ -19,9 +25,29 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class UserService {
 
+    private AuthenticationManager authenticationManager;
+    private JwtTokenService jwtTokenService;
+
+
     private final UserRepository repository;
     private final UserValidator validator;
     private final PasswordEncoder encoder;
+
+    //retorna o token jwt
+    public String authenticateUser(UserLoginDTO userLoginDto) {
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                new UsernamePasswordAuthenticationToken(userLoginDto.email(), userLoginDto.password());
+
+        //autentica o usuário com as credenciais fornecidas
+        Authentication auth = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
+        //obtém o objeto userDetails do usuário  autenticado
+        UserDetailsImpl userDetails = (UserDetailsImpl) auth.getPrincipal();
+
+        //retorna o token jwt
+        return  jwtTokenService.generateToken(userDetails);
+    }
+
 
     public UserEntity saveUser(UserRequestDTO dto) {
 
