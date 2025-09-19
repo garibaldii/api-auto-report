@@ -1,5 +1,6 @@
 package com.matheus.api_auto_report.config.security;
 
+import com.matheus.api_auto_report.infraestructure.dto.AuthenticatedUserDTO;
 import com.matheus.api_auto_report.infraestructure.entity.UserEntity;
 import com.matheus.api_auto_report.infraestructure.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
@@ -35,9 +36,14 @@ public class UserAuthenticationFilter extends OncePerRequestFilter {
                 UserEntity user = userRepository.findByEmail(subject).get(); // Busca o usuário pelo email (que é o assunto do token)
                 UserDetailsImpl userDetails = new UserDetailsImpl(user); // Cria um UserDetails com o usuário encontrado
 
+
+                JwtUserPayload payload = jwtTokenService.getUserDataFromToken(token); // só o id
+
+                AuthenticatedUserDTO authUser = new AuthenticatedUserDTO(payload.userId(), payload.username());
+
                 // Cria um objeto de autenticação do Spring Security
                 Authentication authentication =
-                        new UsernamePasswordAuthenticationToken(userDetails.getUsername(), null, userDetails.getAuthorities());
+                        new UsernamePasswordAuthenticationToken(authUser, null, userDetails.getAuthorities());
 
                 // Define o objeto de autenticação no contexto de segurança do Spring Security
                 SecurityContextHolder.getContext().setAuthentication(authentication);
