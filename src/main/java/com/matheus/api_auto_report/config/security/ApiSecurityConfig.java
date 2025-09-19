@@ -18,8 +18,8 @@ public class ApiSecurityConfig {
     private UserAuthenticationFilter userAuthenticationFilter;
 
     public static final String [] ENDPOINTS_WITH_AUTHENTICATION_NOT_REQUIRED = {
-            "/users/login", // Url que usaremos para fazer login
-            "/users" // Url que usaremos para criar um usuário
+            "/user/login", // Url que usaremos para fazer login
+            "/user/" // Url que usaremos para criar um usuário
     };
 
     @Bean
